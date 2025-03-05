@@ -1,3 +1,5 @@
+using SquareOverFlowCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -6,6 +8,16 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+var config = builder.Configuration;
+if (string.IsNullOrEmpty(config["Values:DataFilePath"]))
+{
+    throw new Exception("Required configuration 'DataFilePath' is missing");
+}
+
+
+builder.Services.AddSingleton<ISquareService, SquareService>();
+builder.Services.AddSingleton<IStorageService, StorageService>();
 
 var app = builder.Build();
 
