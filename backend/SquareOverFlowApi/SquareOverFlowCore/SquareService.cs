@@ -1,27 +1,29 @@
-﻿using SquareOverFlowCore.Models;
+﻿using SquareOverFlowCore.Interfaces;
+using SquareOverFlowCore.Models;
 
 namespace SquareOverFlowCore
 {
     public class SquareService : ISquareService
     {
         private readonly IStorageService _storage;
-
+        
+        private HashSet<Color> _usedColors = [];
         public SquareService(IStorageService storage)
         {
             _storage = storage;
         }
 
-        public List<Square> GetAllSquares()
+        public List<Square> LoadSquaresFromStorage()
         {
             return _storage.ReadFile();
         }
 
-        public List<Square> AddSquare()
+        public List<Square> GenerateSquare()
         {
-            var squares = GetAllSquares();
+            var squares = LoadSquaresFromStorage();
 
-            Position newPosition = CalculateNextPosition(squares);
-            Color newColor = GenerateRandomColor();
+            Position newPosition = DetermineNextSquarePosition(squares);
+            Color newColor = GenerateRandomColor(squares);
 
             Square newSquare = new()
             {
@@ -36,37 +38,35 @@ namespace SquareOverFlowCore
             return squares;
         }
 
-        public List<Square> DeleteSquares()
+        public List<Square> ClearSquaresStorage()
         {
             return _storage.DeleteFile();
         }
 
-
-        private Position CalculateNextPosition(List<Square> squares)
+        private Position DetermineNextSquarePosition(List<Square> squares)
         {
             if (!squares.Any())
             {
                 return new Position();
             }
 
+            var lastSquare = squares[^1];
             int maxX = squares.Max(s => s.Position.X);
             int maxY = squares.Max(s => s.Position.Y);
 
-            var lastSquare = squares[^1]; ;
-
-            //start a new column
+            // Start a new column
             if (lastSquare.Position.Y == 0)
             {
                 return new Position { X = 0, Y = lastSquare.Position.X + 1 };
             }
 
-            //and move down
+            // Move down when at the top of a column
             if (lastSquare.Position.Y == maxY && lastSquare.Position.X != lastSquare.Position.Y)
             {
                 return new Position { X = lastSquare.Position.X + 1, Y = lastSquare.Position.Y };
             }
 
-            //move left
+            // Move left when at the right edge
             if (lastSquare.Position.X == maxX && lastSquare.Position.Y > 0)
             {
                 return new Position { X = lastSquare.Position.X, Y = lastSquare.Position.Y - 1 };
@@ -76,19 +76,40 @@ namespace SquareOverFlowCore
 
         }
 
-        private Color GenerateRandomColor()
+        private Color GenerateRandomColor(List<Square> squares)
         {
-            Random random = new Random();
+            var random = new Random();
+            const int maxAttempts = 100;
+            int attempts = 0;
 
-            Color newColor = new Color()
+            while (attempts < maxAttempts)
             {
-                Red = random.Next(0, 256),
-                Green = random.Next(0, 256),
-                Blue = random.Next(0, 256)
+                attempts++;
+
+                Color newColor = new Color()
+                {
+                    Red = (byte)random.Next(0, 256),
+                    Green = (byte)random.Next(0, 256),
+                    Blue = (byte)random.Next(0, 256)
+                };
+
+                if (!_usedColors.Contains(newColor))
+                {
+                    _usedColors.Add(newColor);
+                    return newColor;
+                }
+            }
+
+            Color fallbackColor = new Color()
+            {
+                Red = (byte)random.Next(0, 256),
+                Green = (byte)random.Next(0, 256),
+                Blue = (byte)random.Next(0, 256)
             };
 
-            return newColor;
-        }
+            _usedColors.Add(fallbackColor);
+            return fallbackColor;
 
+        }
     }
 }

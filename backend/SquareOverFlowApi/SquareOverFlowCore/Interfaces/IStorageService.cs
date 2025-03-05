@@ -1,6 +1,6 @@
 ﻿using SquareOverFlowCore.Models;
 
-namespace SquareOverFlowCore
+namespace SquareOverFlowCore.Interfaces
 {
     public interface IStorageService
     {
