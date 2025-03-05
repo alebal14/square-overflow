@@ -40,6 +40,7 @@ namespace SquareOverFlowCore
 
         public List<Square> ClearSquaresStorage()
         {
+            _usedColors.Clear();
             return _storage.DeleteFile();
         }
 
