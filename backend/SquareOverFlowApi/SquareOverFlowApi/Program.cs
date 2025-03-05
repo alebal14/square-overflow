@@ -6,10 +6,8 @@ using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -49,10 +47,6 @@ builder.Services.AddSwaggerGen(d =>
         Console.WriteLine("Make sure you have <GenerateDocumentationFile>true</GenerateDocumentationFile> in your .csproj file");
     }
 
-    // Enable Swagger annotations
-    //d.EnableAnnotations();
-
-    // Use meaningful operation IDs
     d.CustomOperationIds(apiDesc =>
         apiDesc.TryGetMethodInfo(out MethodInfo methodInfo) ? methodInfo.Name : null);
 });
@@ -75,7 +69,6 @@ var app = builder.Build();
 
 app.UseCors();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
