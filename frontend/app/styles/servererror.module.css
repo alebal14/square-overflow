@@ -1,0 +1,30 @@
+.serverErrorInfo {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background-color: #f8f9fa;
+    border-left: 4px solid #ff5252;
+    border-radius: 4px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+  
+.serverErrorInfo h3 {
+    margin-top: 0;
+    color: #d32f2f;
+}
+  
+.serverErrorInfo ul {
+    margin-bottom: 1.5rem;
+}
+  
+@keyframes slideDown {
+    from {
+      transform: translate(-50%, -100%);
+      opacity: 0;
+    }
+    to {
+      transform: translate(-50%, 0);
+      opacity: 1;
+    }
+}

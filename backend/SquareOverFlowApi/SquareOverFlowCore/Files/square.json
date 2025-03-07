@@ -1,0 +1,134 @@
+[
+  {
+    "Color": {
+      "Red": 244,
+      "Green": 175,
+      "Blue": 218
+    },
+    "Position": {
+      "X": 0,
+      "Y": 0
+    }
+  },
+  {
+    "Color": {
+      "Red": 100,
+      "Green": 58,
+      "Blue": 224
+    },
+    "Position": {
+      "X": 0,
+      "Y": 1
+    }
+  },
+  {
+    "Color": {
+      "Red": 209,
+      "Green": 119,
+      "Blue": 110
+    },
+    "Position": {
+      "X": 1,
+      "Y": 1
+    }
+  },
+  {
+    "Color": {
+      "Red": 71,
+      "Green": 211,
+      "Blue": 169
+    },
+    "Position": {
+      "X": 1,
+      "Y": 0
+    }
+  },
+  {
+    "Color": {
+      "Red": 61,
+      "Green": 53,
+      "Blue": 61
+    },
+    "Position": {
+      "X": 0,
+      "Y": 2
+    }
+  },
+  {
+    "Color": {
+      "Red": 96,
+      "Green": 105,
+      "Blue": 13
+    },
+    "Position": {
+      "X": 1,
+      "Y": 2
+    }
+  },
+  {
+    "Color": {
+      "Red": 61,
+      "Green": 22,
+      "Blue": 231
+    },
+    "Position": {
+      "X": 2,
+      "Y": 2
+    }
+  },
+  {
+    "Color": {
+      "Red": 108,
+      "Green": 123,
+      "Blue": 26
+    },
+    "Position": {
+      "X": 2,
+      "Y": 1
+    }
+  },
+  {
+    "Color": {
+      "Red": 216,
+      "Green": 213,
+      "Blue": 74
+    },
+    "Position": {
+      "X": 2,
+      "Y": 0
+    }
+  },
+  {
+    "Color": {
+      "Red": 65,
+      "Green": 147,
+      "Blue": 165
+    },
+    "Position": {
+      "X": 0,
+      "Y": 3
+    }
+  },
+  {
+    "Color": {
+      "Red": 127,
+      "Green": 124,
+      "Blue": 213
+    },
+    "Position": {
+      "X": 1,
+      "Y": 3
+    }
+  },
+  {
+    "Color": {
+      "Red": 155,
+      "Green": 167,
+      "Blue": 138
+    },
+    "Position": {
+      "X": 2,
+      "Y": 3
+    }
+  }
+]

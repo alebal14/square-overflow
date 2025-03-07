@@ -5,7 +5,7 @@ namespace SquareOverFlowCore.Interfaces
     public interface ISquareService
     {
         List<Square> ClearSquaresStorage();
-        List<Square> GenerateSquare();
+        Square GenerateSquare();
         List<Square> LoadSquaresFromStorage();
     }
 }

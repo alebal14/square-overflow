@@ -1,0 +1,67 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 24px 16px;
+}
+
+.header{
+    padding: 24px 0;
+}
+
+.btnGroup{
+    display: flex;
+    gap: 10px;
+    margin-top: 80px;
+    margin-bottom: 32px;
+}
+
+.btn{
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-weight: 900;
+    padding: 8px 16px;
+    cursor: pointer;
+}
+
+.btnYellow{
+    background-color: rgb(250 204 21);
+}
+
+.btnPink{
+    background-color: rgb(248 113 113);
+}
+
+.btnBlue {
+    background-color: #2196f3;
+    color: white;
+}  
+
+.squareGroup{
+    display: grid;
+    gap: 8px;
+}
+
+.square{
+    width: 60px;
+    height: 60px;
+    border-radius: 4px;
+}
+
+.fadeIn {    
+    animation: fadeInAnimation 0.2s ease-in both;
+    border-radius: 4px;
+}
+  
+@keyframes fadeInAnimation {
+	from {
+		opacity: 0;
+		transform: translate3d(0, -40%, 0);
+	}
+	to {
+		opacity: 1;
+		transform: translate3d(0, 0, 0); 
+	}
+}

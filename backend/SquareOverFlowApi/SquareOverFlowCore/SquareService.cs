@@ -18,7 +18,7 @@ namespace SquareOverFlowCore
             return _storage.ReadFile();
         }
 
-        public List<Square> GenerateSquare()
+        public Square GenerateSquare()
         {
             var squares = LoadSquaresFromStorage();
 
@@ -35,7 +35,7 @@ namespace SquareOverFlowCore
 
             _storage.WriteFile(squares);
 
-            return squares;
+            return newSquare;
         }
 
         public List<Square> ClearSquaresStorage()
