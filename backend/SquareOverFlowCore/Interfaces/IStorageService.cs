@@ -4,8 +4,8 @@ namespace SquareOverFlowCore.Interfaces
 {
     public interface IStorageService
     {
-        List<Square> DeleteFile();
-        List<Square> ReadFile();
-        void WriteFile(List<Square> squares);
+        Task<List<Square>> DeleteFile();
+        Task<List<Square>> ReadFileAsync();
+        Task WriteFile(List<Square> squares);
     }
 }

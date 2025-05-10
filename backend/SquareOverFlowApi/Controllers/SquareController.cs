@@ -25,11 +25,10 @@ namespace SquareOverFlowApi.Controllers
         /// </summary>
         /// <returns>A collection of all stored squares</returns>
         /// <response code="200">Returns the collection of squares</response>
-        /// <response code="404">If no squares are found</response>
         [HttpGet]
-        public IActionResult GetAllSquares()
+        public async Task<IActionResult> GetAllSquares()
         {
-            var result = _squareService.LoadSquaresFromStorage();
+            var result = await _squareService.LoadSquaresFromStorageAsync();
             return Ok(result);
         }
 
@@ -41,9 +40,9 @@ namespace SquareOverFlowApi.Controllers
         /// <response code="201">Returns the newly created square</response>
         /// <response code="500">If there was an error generating the square</response>
         [HttpPost]
-        public IActionResult AddSquare()
+        public async Task<IActionResult> AddSquare()
         {
-            var result = _squareService.GenerateSquare();
+            var result = await _squareService.GenerateSquareAsync();
             return CreatedAtAction(nameof(GetAllSquares), result);
         }
 
@@ -55,9 +54,9 @@ namespace SquareOverFlowApi.Controllers
         /// <response code="200">Operation was successful</response>
         /// <response code="500">If there was an error clearing the storage</response>
         [HttpDelete]
-        public IActionResult DeleteAllSquares()
+        public async Task<IActionResult> DeleteAllSquares()
         {
-            var result = _squareService.ClearSquaresStorage();
+            var result = await _squareService.ClearSquaresStorageAsync();
             return Ok(result);
         }
     }

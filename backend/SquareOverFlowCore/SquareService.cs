@@ -6,21 +6,21 @@ namespace SquareOverFlowCore
     public class SquareService : ISquareService
     {
         private readonly IStorageService _storage;
-        
+
         private HashSet<Color> _usedColors = [];
         public SquareService(IStorageService storage)
         {
             _storage = storage;
         }
 
-        public List<Square> LoadSquaresFromStorage()
+        public async Task<List<Square>> LoadSquaresFromStorage()
         {
-            return _storage.ReadFile();
+            return await _storage.ReadFileAsync();
         }
 
-        public Square GenerateSquare()
+        public async Task<Square> GenerateSquare()
         {
-            var squares = LoadSquaresFromStorage();
+            var squares = await LoadSquaresFromStorage();
 
             Position newPosition = DetermineNextSquarePosition(squares);
             Color newColor = GenerateRandomColor(squares);
@@ -33,15 +33,15 @@ namespace SquareOverFlowCore
 
             squares.Add(newSquare);
 
-            _storage.WriteFile(squares);
+            await _storage.WriteFile(squares);
 
             return newSquare;
         }
 
-        public List<Square> ClearSquaresStorage()
+        public async Task<List<Square>> ClearSquaresStorage()
         {
             _usedColors.Clear();
-            return _storage.DeleteFile();
+            return await _storage.DeleteFile();
         }
 
         private Position DetermineNextSquarePosition(List<Square> squares)

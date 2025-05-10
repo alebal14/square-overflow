@@ -20,7 +20,7 @@ namespace SquareOverFlowCore
             _jsonOptions = new JsonSerializerOptions { WriteIndented = true };
         }
 
-        public List<Square> ReadFile()
+        public async Task<List<Square>> ReadFileAsync()
         {
             try
             {
@@ -30,7 +30,7 @@ namespace SquareOverFlowCore
                     return new List<Square>();
                 }
 
-                string json = File.ReadAllText(_dataFilePath);
+                string json = await File.ReadAllTextAsync(_dataFilePath);
                 return JsonSerializer.Deserialize<List<Square>>(json, _jsonOptions) ?? new List<Square>();
             }
             catch (Exception ex) when (ex is IOException || ex is JsonException)
@@ -41,13 +41,13 @@ namespace SquareOverFlowCore
             }
         }
 
-        public void WriteFile(List<Square> squares)
+        public async Task WriteFile(List<Square> squares)
         {
             try
             {
                 EnsureDirectoryExists();
                 string updatedJson = JsonSerializer.Serialize(squares, _jsonOptions);
-                File.WriteAllText(_dataFilePath, updatedJson);
+                await File.WriteAllTextAsync(_dataFilePath, updatedJson);
             }
             catch (Exception ex) when (ex is IOException || ex is JsonException)
             {
@@ -57,13 +57,13 @@ namespace SquareOverFlowCore
             }
         }
 
-        public List<Square> DeleteFile()
+        public async Task<List<Square>> DeleteFile()
         {
             try
             {
                 if (File.Exists(_dataFilePath))
                 {
-                    File.Delete(_dataFilePath);
+                    await Task.Run(() => File.Delete(_dataFilePath));
                     _logger.LogInformation("Successfully deleted file: {FilePath}", _dataFilePath);
                 }
                 else

@@ -60,7 +60,6 @@ builder.Services.AddCors(options =>
             .WithHeaders("Content-Type")
             .WithMethods("GET", "POST", "DELETE")
             .SetIsOriginAllowedToAllowWildcardSubdomains()
-            .WithExposedHeaders("Content-Disposition")
             .SetPreflightMaxAge(TimeSpan.FromMinutes(3));
     });
 });
